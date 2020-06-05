@@ -25,4 +25,6 @@ export class FromComponent implements OnInit {
     this.router.navigateByUrl('Location');
   }
 
+  guardar() {}
+
 }

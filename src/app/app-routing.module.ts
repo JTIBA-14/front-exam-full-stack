@@ -12,7 +12,11 @@ const routes: Routes = [
     {
       path: 'create-location',
       component: FromComponent
-  },
+    },
+    {
+      path: 'create-location/:id',
+      component: FromComponent
+    },
     {
       path: '',
       redirectTo: 'Location',
