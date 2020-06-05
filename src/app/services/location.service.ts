@@ -14,7 +14,8 @@ export class LocationService {
 
   constructor( private http: HttpClient ) {
       this.headers = new HttpHeaders()
-          .set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/json; charset=UTF-8')
   }
 
   // show locations
