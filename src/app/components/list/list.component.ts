@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocationService } from 'src/app/services/location.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -11,7 +12,8 @@ export class ListComponent implements OnInit {
   public listLocation: any[] = [];
 
   constructor(
-    private _locationService: LocationService
+    private _locationService: LocationService,
+    private router: Router
   ) {
 
   }
@@ -24,6 +26,10 @@ export class ListComponent implements OnInit {
     this._locationService.listLocation().subscribe((response: any) => {
       this.listLocation = response;
     });
+  }
+
+  nuevo() {
+    this.router.navigateByUrl('create-location');
   }
 
 }
