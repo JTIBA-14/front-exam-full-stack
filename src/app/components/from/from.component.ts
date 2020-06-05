@@ -20,7 +20,7 @@ export class FromComponent implements OnInit {
   constructor( private router: Router,
     private _router: ActivatedRoute,
     private _locationService: LocationService) {
-    this.id = this._router.snapshot.params.id;
+    this.id = parseInt(this._router.snapshot.params.id);
     this.frmLocation = new FormGroup({
       name: new FormControl(null, Validators.required),
       area: new FormControl(null, Validators.required),
@@ -58,11 +58,13 @@ export class FromComponent implements OnInit {
 			return false;
     }
 
-    const data: Location = {
+    let padre = this.frmLocation.get('padre').value;
+
+    let data: Location = {
       id: this.id,
       name: this.frmLocation.get('name').value,
-      area_m2: this.frmLocation.get('area').value,
-      location: { id: this.frmLocation.get('padre').value },
+      area_m2: parseInt(this.frmLocation.get('area').value),
+      locationId: ( padre ) ? { id: padre } : null,
     };
 
     this._locationService.guardar( data, this.id ).subscribe((response: any ) => {
