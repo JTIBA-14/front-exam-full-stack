@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocationService } from 'src/app/services/location.service';
+import { Router } from '@angular/router';
+import { Location } from './../../Location';
 
 @Component({
   selector: 'app-list',
@@ -8,10 +10,11 @@ import { LocationService } from 'src/app/services/location.service';
 })
 export class ListComponent implements OnInit {
 
-  public listLocation: any[] = [];
+  public listLocation: Location[] = [];
 
   constructor(
-    private _locationService: LocationService
+    private _locationService: LocationService,
+    private router: Router
   ) {
 
   }
@@ -21,9 +24,17 @@ export class ListComponent implements OnInit {
   }
 
   consultarListado() {
-    this._locationService.listLocation().subscribe((response: any) => {
+    this._locationService.listLocation().subscribe((response: Location[]) => {
       this.listLocation = response;
     });
+  }
+
+  nuevo() {
+    this.router.navigateByUrl('create-location');
+  }
+
+  edit( id: number ) {
+    this.router.navigate(['create-location', id ]);
   }
 
 }

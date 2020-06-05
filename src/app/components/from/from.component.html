@@ -1,1 +1,33 @@
-<p>from works!</p>
+<h5>New Location</h5>
+<hr/>
+
+<form [formGroup]="frmLocation" (ngSubmit)="guardar()" novalidate>
+  <div class="form-group row">
+    <label for="" class="col-form-label col-sm-2">Name:</label>
+    <div class="col-sm-6">
+      <input type="text"
+        #name
+        (input)="name.value=$event.target.value.toUpperCase()"
+        class="form-control form-control-sm"
+        formControlName="name">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="" class="col-form-label col-sm-2">Area (m2):</label>
+    <div class="col-sm-6">
+      <input type="text"
+        class="form-control form-control-sm"
+        formControlName="area">
+    </div>
+  </div>
+  <hr/>
+  <div class="form-group">
+    <div class="btn-group float-left">
+      <button class="btn btn-sm btn-danger"
+        (click)="cancelar()">Cancelar</button>
+      <button class="btn btn-sm btn-success"
+        type="submit" [disabled]="frmLocation.invalid" >{{ nameButton }}</button>
+    </div>
+  </div>
+</form>
