@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-from',
@@ -9,7 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class FromComponent implements OnInit {
 
   public frmLocation: FormGroup;
-  constructor() {
+  constructor( private router: Router ) {
 
     this.frmLocation = new FormGroup({
       name: new FormControl(null, Validators.required),
@@ -18,6 +19,10 @@ export class FromComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  cancelar() {
+    this.router.navigateByUrl('Location');
   }
 
 }
