@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Location } from '../Location';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class LocationService {
   }
 
   // Save locatio or update
-  guardar( datos: Location, id ) {
+  public guardar( datos: Location, id ) {
     if ( !id ) {
         return this.http.post(`${environment.URL}location/registrar`, JSON.stringify(datos), {headers: this.headers});
     } else {
