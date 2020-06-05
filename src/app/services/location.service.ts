@@ -16,14 +16,24 @@ export class LocationService {
           .set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
   }
 
-
-  public listLocation (): Observable<any> {
-    return this.http.get<any>( `${environment.URL}location/listarTodos`, { headers: this.headers });
+  // show locations
+  public listLocation (): Observable<Location[]> {
+    return this.http.get<Location[]>( `${environment.URL}location/listarTodos`, { headers: this.headers });
   }
 
-  public listId ( id: number ): Observable<any> {
-    return this.http.get<any>( `${environment.URL}location/listar/${id}` , { headers: this.headers });
+  // show location for id
+  public listId ( id: number ): Observable<Location> {
+    return this.http.get<Location>( `${environment.URL}location/listar/${id}` , { headers: this.headers });
   }
+
+  // Save locatio or update
+  guardar( datos: Location, id ) {
+    if ( !id ) {
+        return this.http.post(`${environment.URL}location/registrar`, JSON.stringify(datos), {headers: this.headers});
+    } else {
+        return this.http.put(`${environment.URL}location/actualizar`, JSON.stringify(datos), {headers: this.headers});
+    }
+}
 
 
 }
