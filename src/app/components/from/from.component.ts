@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-from',
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FromComponent implements OnInit {
 
-  constructor() { }
+  public frmLocation: FormGroup;
+  constructor() {
+
+    this.frmLocation = new FormGroup({
+      name: new FormControl(null, Validators.required),
+      area: new FormControl(null, Validators.required),
+    });
+  }
 
   ngOnInit(): void {
   }
