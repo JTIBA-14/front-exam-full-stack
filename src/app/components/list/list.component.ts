@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocationService } from 'src/app/services/location.service';
 
 @Component({
   selector: 'app-list',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  public listLocation: any[] = [];
+
+  constructor(
+    private _locationService: LocationService
+  ) {
+
+  }
 
   ngOnInit(): void {
+    this.consultarListado();
+  }
+
+  consultarListado() {
+    this._locationService.listLocation().subscribe((response: any) => {
+      this.listLocation = response;
+    });
   }
 
 }
