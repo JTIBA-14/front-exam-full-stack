@@ -13,6 +13,7 @@ export class FromComponent implements OnInit {
   public frmLocation: FormGroup;
   private id: number = null;
   private location: any;
+  public nameButton: string =  "Agregar";
 
 
   constructor( private router: Router,
@@ -26,6 +27,7 @@ export class FromComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.nameButton = (this.id) ? "Modificar" : "Agregar";
     this.showData();
   }
 
