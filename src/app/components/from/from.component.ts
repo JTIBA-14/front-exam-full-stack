@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { LocationService } from 'src/app/services/location.service';
 
 @Component({
   selector: 'app-from',
@@ -10,8 +11,14 @@ import { Router } from '@angular/router';
 export class FromComponent implements OnInit {
 
   public frmLocation: FormGroup;
-  constructor( private router: Router ) {
+  private id: number = null;
+  private location: any;
 
+
+  constructor( private router: Router,
+    private _router: ActivatedRoute,
+    private _locationService: LocationService ) {
+    this.id = this._router.snapshot.params.id;
     this.frmLocation = new FormGroup({
       name: new FormControl(null, Validators.required),
       area: new FormControl(null, Validators.required),
@@ -19,6 +26,23 @@ export class FromComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.showData();
+  }
+
+  showData() {
+    if( this.id ) {
+      this._locationService.listId( this.id ).subscribe((response) => {
+        this.location = response;
+        this.montarData();
+      });
+    }
+  }
+
+  montarData() {
+    this.frmLocation.patchValue({
+      name: this.location.name,
+      area: this.location.area_m2
+    });
   }
 
   cancelar() {

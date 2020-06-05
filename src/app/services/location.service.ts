@@ -16,10 +16,15 @@ export class LocationService {
             .set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
     }
 
-  /**
-   * Método encargado de validar las credenciales del usuario
-   */
+
   public listLocation (): Observable<any> {
     return this.http.get<any>( `${environment.URL}location/listarTodos`, { headers: this.headers });
   }
+
+
+  public listId ( id: number ): Observable<any> {
+    return this.http.get<any>( `${environment.URL}location/listar/${id}` , { headers: this.headers });
+  }
+
+
 }
