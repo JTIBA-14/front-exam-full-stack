@@ -32,4 +32,8 @@ export class ListComponent implements OnInit {
     this.router.navigateByUrl('create-location');
   }
 
+  edit( id: number ) {
+    this.router.navigate(['create-location', id ]);
+  }
+
 }

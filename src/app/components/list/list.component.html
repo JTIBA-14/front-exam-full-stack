@@ -17,10 +17,10 @@
         <td>{{ i+1 }}</td>
         <td>{{ location.name }}</td>
         <td>{{ location.area_m2 }}</td>
-        <td>
+        <td class="text-center">
           <div class="btn-group">
-            <button class="btn btn-sm btn-info">Editar</button>
-            <button class="btn btn-sm btn-danger" (click)="edit(location.id)">Eliminar</button>
+            <button class="btn btn-sm btn-info" (click)="edit(location.id)">Editar</button>
+            <button class="btn btn-sm btn-danger">Eliminar</button>
           </div>
         </td>
       </tr>
