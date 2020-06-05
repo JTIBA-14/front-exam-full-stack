@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocationService } from 'src/app/services/location.service';
 import { Router } from '@angular/router';
+import { Location } from './../../Location';
 
 @Component({
   selector: 'app-list',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ListComponent implements OnInit {
 
-  public listLocation: any[] = [];
+  public listLocation: Location[] = [];
 
   constructor(
     private _locationService: LocationService,
@@ -23,7 +24,7 @@ export class ListComponent implements OnInit {
   }
 
   consultarListado() {
-    this._locationService.listLocation().subscribe((response: any) => {
+    this._locationService.listLocation().subscribe((response: Location[]) => {
       this.listLocation = response;
     });
   }

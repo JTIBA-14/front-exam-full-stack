@@ -2,5 +2,5 @@ export interface Location {
   id?: number,
   name?: string,
   area_m2?: number,
-  locationId?: Location
+  location?: Location
 }

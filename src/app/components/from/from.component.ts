@@ -62,9 +62,9 @@ export class FromComponent implements OnInit {
 
     let data: Location = {
       id: this.id,
-      name: this.frmLocation.get('name').value,
+      name: (this.frmLocation.get('name').value).toUpperCase(),
       area_m2: parseInt(this.frmLocation.get('area').value),
-      locationId: ( padre ) ? { id: padre } : null,
+      location: ( padre ) ? { id: padre } : null,
     };
 
     this._locationService.guardar( data, this.id ).subscribe((response: any ) => {

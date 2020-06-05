@@ -6,6 +6,8 @@
     <label for="" class="col-form-label col-sm-2">Name:</label>
     <div class="col-sm-6">
       <input type="text"
+        #name
+        (input)="name.value=$event.target.value.toUpperCase()"
         class="form-control form-control-sm"
         formControlName="name">
     </div>
