@@ -14,6 +14,7 @@ export class FromComponent implements OnInit {
   public frmLocation: FormGroup;
   public id: number = null;
   private location: any;
+  public locations: Location[] = [];
   public nameButton: string =  "Agregar";
 
 
@@ -35,17 +36,24 @@ export class FromComponent implements OnInit {
 
   showData() {
     if( this.id ) {
-      this._locationService.listId( this.id ).subscribe((response) => {
+      this._locationService.listId( this.id ).subscribe((response: Location) => {
         this.location = response;
         this.montarData();
       });
     }
+
+    this._locationService.listLocation().subscribe((response: Location[]) => {
+      this.locations = response;
+    })
+
+
   }
 
   montarData() {
     this.frmLocation.patchValue({
       name: this.location.name,
-      area: this.location.area_m2
+      area: this.location.area_m2,
+      padre: this.location.location.id
     });
   }
 
